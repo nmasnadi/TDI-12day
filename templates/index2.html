@@ -1,29 +1,43 @@
+<!DOCTYPE html>
 <html>
 <head>
-{{ resources|safe }}
-<!-- <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.4.0.min.js"></script> <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.4.0.min.js"></script> <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.4.0.min.js"></script> <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-gl-1.4.0.min.js"></script> <script type="text/javascript"> Bokeh.set_log_level("info"); </script> -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Skeleton application demoing Heroku and Flask integration.">
+  <meta name="author" content="@gotoariel">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/spacelab/bootstrap.min.css">
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+          crossorigin="anonymous"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+          crossorigin="anonymous"></script> -->
+
+  <title>Wilkommen, bienvenue, and welcome to Heroku!</title>
+  {{ resources|safe }}
 
 </head>
-
-
 <body>
-<H1>Daily Stock Price</H1>
+<div class="row align-items-center justify-content-center">
+  <h1>Daily Stock Price</h1>
+</div>
 
-<form action="/">
-<select name="ticker_symbol">
-	{% for ticker in ticker_list %}
-		{% if ticker == current_ticker %}
-			<option selected value="{{ ticker }}">{{ ticker }}</option>
-		{% else %}
-			<option value="{{ ticker }}">{{ ticker }}</option>
-		{% endif %}
-	{% endfor %}
-</select>
-<input type="submit">
-</form>
+<div class="row align-items-center justify-content-center">
+  <form method = "POST">
+    <label for="ticker_symbol">Ticker Symbol</label><br>
+    <input type="text" id="ticker_symbol" name="ticker_symbol" value="">
+    <input type="submit" value="Submit">
+  </form>
+</div>
 
-{{ div|safe }}
-{{ script|safe }}
+<div class="row align-items-center justify-content-center">
+  {{ div|safe }}
+  {{ script|safe }}
+</div>
 
 </body>
 </html>
