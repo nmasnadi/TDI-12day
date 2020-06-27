@@ -17,7 +17,6 @@ def read_data(tickerSymbol, num_days = 30):
 
     r = requests.get(url)
     data_json = json.loads(r.text)
-    # print(data_json)
     if "Error Message" in data_json:
         error = data_json["Error Message"]
         url = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' +\
