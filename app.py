@@ -6,15 +6,18 @@ import numpy as np
 import json
 
 app = Flask(__name__)
+columns = ["Open", "High", "Low", "Close"]
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
 
     if request.method == 'POST':
         current_ticker = request.form['ticker_symbol']
-        ticker_data, error, ticker_list = helper.read_data(current_ticker, num_days = 30)
+        cols = [col for col in columns if col in request.form]
+        num_days = int(request.form['num_days'])
+        ticker_data, error, ticker_list = helper.read_data(current_ticker, num_days = num_days)
         if len(error) == 0:
-            p = helper.make_plot(ticker_data, current_ticker)
+            p = helper.make_plot(ticker_data, current_ticker, cols)
             script, div = components(p)
             return render_template("index.html", script = script, div = div, \
             current_ticker = current_ticker, \

@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import requests
 from bokeh.plotting import figure, show
+from bokeh.palettes import Spectral4
 import json
 
 
@@ -46,10 +47,12 @@ def read_data(tickerSymbol, num_days = 30):
     return data_pd, error, ticker_list
 
 
-def make_plot(data, tickerSymbol = "GOOG"):
-    x = np.array(data.index, dtype = np.datetime64)
-    y = data['4. close'].to_numpy()
+def make_plot(data, tickerSymbol, cols):
 
+    if cols == []:
+        cols = ["Close"]
+    pd_cols = {'Open':'1. open', 'High':'2. high', 'Low':'3. low',
+    'Close':'4. close'}
     p = figure(title = tickerSymbol.upper(),
        tools="pan,box_zoom,reset,save",
        plot_width=800, plot_height=450, x_axis_type="datetime"
@@ -61,11 +64,19 @@ def make_plot(data, tickerSymbol = "GOOG"):
     p.yaxis.axis_label = "price"
     p.yaxis.axis_label_text_font_size = "25px"
 
-    p.circle(x, y, color="darkgray", fill_alpha=0.5, size=15)
-    p.line(x, y, color = 'black', line_width = 2)
+    x = np.array(data.index, dtype = np.datetime64)
+
+    for col, color in zip(cols, Spectral4):
+        y = data[pd_cols[col]].to_numpy()
+        p.circle(x, y, color="darkgray", fill_alpha=0.5, size=15, legend_label = col)
+        p.line(x, y, color = color, line_width = 2, legend_label = col)
+
+    p.legend.location = "top_left"
+    p.legend.click_policy="hide"
+
     return p
 
 if __name__ == '__main__':
     a, error, tlist = read_data("GOOG", num_days = 30)
-    p = make_plot(a)
+    p = make_plot(a, "GOOG", ["Close"])
     show(p)

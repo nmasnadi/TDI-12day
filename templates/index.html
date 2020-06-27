@@ -19,7 +19,24 @@
     <div class="row align-items-center justify-content-center">
       <form method = "POST">
         <label for="ticker_symbol">Ticker Symbol</label><br>
-        <input type="text" id="ticker_symbol" name="ticker_symbol" value="">
+        <input type="text" id="ticker_symbol" name="ticker_symbol" value=""><br>
+
+        <input type="checkbox" id="Open" name="Open" value="Open">
+        <label for="Open">Open</label>
+        <input type="checkbox" id="High" name="High" value="High">
+        <label for="High">High</label>
+        <input type="checkbox" id="Low" name="Low" value="Low">
+        <label for="Low">Low</label>
+        <input type="checkbox" id="Close" name="Close" value="Close" checked = true>
+        <label for="Close">Close</label><br>
+
+        <input type="radio" id="thrity" name="num_days" value="30" checked = true>
+        <label for="thrity">30 days </label>
+        <input type="radio" id="sixty" name="num_days" value="60">
+        <label for="sixty">60 days </label>
+        <input type="radio" id="ninety" name="num_days" value="90">
+        <label for="ninety">90 days</label><br>
+
         <input type="submit" value="Submit">
       </form>
     </div>
