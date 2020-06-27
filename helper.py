@@ -56,6 +56,8 @@ def read_data(tickerSymbol, num_days = 30):
         data_pd = data_pd[data_pd.index >= start]
     else:
         error = "Something went wrong! Please try again"
+        data_pd = None
+        ticker_list = []
 
     return data_pd, error, ticker_list
 
