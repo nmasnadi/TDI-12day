@@ -16,6 +16,7 @@ def index():
         cols = [col for col in columns if col in request.form]
         num_days = int(request.form['num_days'])
         ticker_data, error, ticker_list = helper.read_data(current_ticker, num_days = num_days)
+
         if len(error) == 0:
             p = helper.make_plot(ticker_data, current_ticker, cols)
             script, div = components(p)
@@ -37,7 +38,7 @@ def index():
                 err += matches
             return render_template("index.html", error = err, resources = CDN.render())
     else:
-        return render_template("index.html")#, resources = CDN.render())
+        return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(port=33507)
