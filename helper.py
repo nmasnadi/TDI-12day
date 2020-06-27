@@ -19,7 +19,6 @@ def read_data(tickerSymbol, num_days = 30):
     data_json = json.loads(r.text)
     # print(data_json)
     if "Error Message" in data_json:
-        print(data_json)
         error = data_json["Error Message"]
         url = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' +\
         tickerSymbol + '&apikey=' + alphaKey
@@ -52,7 +51,7 @@ def make_plot(data, tickerSymbol = "GOOG"):
     x = np.array(data.index, dtype = np.datetime64)
     y = data['4. close'].to_numpy()
 
-    p = figure(title = tickerSymbol,
+    p = figure(title = tickerSymbol.upper(),
        tools="pan,box_zoom,reset,save",
        plot_width=800, plot_height=450, x_axis_type="datetime"
     )
@@ -63,14 +62,11 @@ def make_plot(data, tickerSymbol = "GOOG"):
     p.yaxis.axis_label = "price"
     p.yaxis.axis_label_text_font_size = "25px"
 
-    p.circle(x, y, color="darkgray", fill_alpha=0.5, size=10)
+    p.circle(x, y, color="darkgray", fill_alpha=0.5, size=15)
     p.line(x, y, color = 'black', line_width = 2)
     return p
 
 if __name__ == '__main__':
     a, error, tlist = read_data("GOOG", num_days = 30)
-    print(a)
-    # x = np.array(a.index, dtype = np.datetime64)
-    # y = a['4. close'].to_numpy()
     p = make_plot(a)
     show(p)

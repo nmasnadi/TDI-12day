@@ -20,17 +20,19 @@ def index():
             current_ticker = current_ticker, \
             resources = CDN.render())
         else:
-            script = "Error!"
-            # script = """
-            # <h3>Error!</h3>
-            # <br>
-            # <h4>{}</h4>
-            # <br>
-            # <h3>Best matches:</h3>
-            # <br>
-            # <h4>{}</h4>
-            # """.format(error, ", ".join(ticker_list))
-            return render_template("index.html", script = script, resources = CDN.render())
+            err = """
+            <h3>Error!</h3>
+            <br>
+            <h4>{}</h4>
+            <br>""".format(error)
+            if len(ticker_list) > 0:
+                matches = """
+                    <h3>Best matches:</h3>
+                    <br>
+                    <h4>{}</h4>
+                    """.format("<br>".join(ticker_list))
+                err += matches
+            return render_template("index.html", error = err, resources = CDN.render())
     else:
         return render_template("index.html")#, resources = CDN.render())
 
