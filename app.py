@@ -16,7 +16,7 @@ def index():
         if len(error) == 0:
             p = helper.make_plot(ticker_data, current_ticker)
             script, div = components(p)
-            return render_template("index2.html", script = script, div = div, \
+            return render_template("index.html", script = script, div = div, \
             current_ticker = current_ticker, \
             resources = CDN.render())
         else:
@@ -30,9 +30,9 @@ def index():
             # <br>
             # <h4>{}</h4>
             # """.format(error, ", ".join(ticker_list))
-            return render_template("index2.html", script = script, resources = CDN.render())
+            return render_template("index.html", script = script, resources = CDN.render())
     else:
-        return render_template("index2.html")#, resources = CDN.render())
+        return render_template("index.html")#, resources = CDN.render())
 
 if __name__ == '__main__':
     app.run(port=33507)
