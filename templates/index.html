@@ -8,10 +8,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/spacelab/bootstrap.min.css">
   <title>Stock Price Plotter</title>
   {{ resources|safe }}
-  <style>
-    h3 {text-align: center;}
-    h4 {text-align: center;}
-  </style>
 
 </head>
   <body>
@@ -32,8 +28,9 @@
       {{ div|safe }}
       {{ script|safe }}
     </div>
-
-    {{ error|safe}}
+    <div style="text-align:center;">
+      {{ error|safe}}
+    </div>
 
   </body>
 </html>
