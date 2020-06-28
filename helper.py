@@ -3,6 +3,7 @@ import pandas as pd
 import requests
 from bokeh.plotting import figure, show
 from bokeh.palettes import Spectral4
+from bokeh.layouts import column
 import json
 
 def read_data(tickerSymbol, num_days = 30):
@@ -100,7 +101,9 @@ def make_plot(data, tickerSymbol, cols):
     p.legend.location = "top_left"
     p.legend.click_policy="hide"
 
-    return p
+    l = column([p], sizing_mode = "scale_width", max_width= 800)
+
+    return l
 
 if __name__ == '__main__':
     a, error, tlist = read_data("GOOG", num_days = 30)
