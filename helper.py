@@ -56,7 +56,7 @@ def read_data(tickerSymbol, num_days = 30):
         start =  np.datetime64('today') - np.timedelta64(num_days, 'D')
         data_pd = data_pd[data_pd.index >= start]
     else:
-        error = "Something went wrong! Please try again"
+        error = "Something went wrong! Please try again."
         data_pd = None
         ticker_list = []
 

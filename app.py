@@ -25,14 +25,13 @@ def index():
             resources = CDN.render())
         else:
             err = """
-            <h3>Error!</h3>
             <br>
+            <h3><b>Error!</b></h3>
             <h4>{}</h4>
             <br>""".format(error)
             if len(ticker_list) > 0:
                 matches = """
-                    <h3>Best matches:</h3>
-                    <br>
+                    <h3><b>Best matches:</b></h3>
                     <h4>{}</h4>
                     """.format("<br>".join(ticker_list))
                 err += matches
